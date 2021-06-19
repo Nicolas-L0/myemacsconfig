@@ -1,0 +1,3 @@
+# Introduction
+This ia a simple repository for me to learn to use Git and push it to GitLab, and also...
+This is a backup of my emacs config file
