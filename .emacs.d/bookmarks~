@@ -1,0 +1,15 @@
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-refile-last-stored"
+ (filename . "c:/Users/Nicolas.Lai/OneDrive/Documents/_00PersonalDocuments/OrgNote/notes/roam/20210601175438-课程记录.org")
+ (front-context-string . "** 豆豆机器人\n*** 05.")
+ (rear-context-string . "6 14:00-16:00\n \n")
+ (position . 237))
+("org-capture-last-stored"
+ (filename . "c:/Users/Nicolas.Lai/OneDrive/Documents/_00PersonalDocuments/OrgNote/notes/roam/daily/2021-06-17.org")
+ (front-context-string . "\n\n** WheretoLear")
+ (rear-context-string . "物料整理 熟悉物料库存及其摆放\n")
+ (position . 1334))
+)
