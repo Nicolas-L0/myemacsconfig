@@ -9,28 +9,37 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(indicate-buffer-boundaries 'left)
  '(package-selected-packages
    '(org-roam-server org-roam-bibtex olivetti counsel swiper ivy modus-theme org-roam))
- '(size-indication-mode t)   
- '(indicate-buffer-boundaries 'left)
- '(column-number-mode t)
-)
+ '(size-indication-mode t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
-
-
+ '(org-headline-todo ((t (:inherit modus-themes-variable-pitch :foreground "coral1"))))
+ '(org-todo ((t (:foreground "coral"))))
+ '(org-done ((t (:foreground "#2f4f4f" :weight normal :strike-through t))))
+ ;'(org-headline-done  
+ ;              ((t (:foreground "coral" :foreground "LightSalmon" :strike-through t)))))
+ '(org-headline-done 
+            ((((class color) (min-colors 16) (background dark)) 
+               (:foreground "#696969" :strike-through t)))))
 
 ;;==============================================================================================================
 ;;FONT
 ;;; If you want to know how to correct specify a font in Windows,
 ;;; invoke `eval-last-sexp' for (w32-select-font)
 
- (set-face-attribute 'default nil :family "Ubuntu Mono" :foundry "outline" :slant 'normal :weight 'normal :height 98 :width 'normal)
+ (set-face-attribute 'default nil :family "Ubuntu Mono" :foundry "outline" :slant 'normal :weight 'normal :height 105 :width 'normal)
+ (set-face-attribute 'variable-pitch nil :family "Ubuntu Mono" :foundry "outline" :slant 'normal :weight 'normal :height 105 :width 'normal)
+ (set-face-attribute 'fixed-pitch nil :family "Ubuntu Mono" :foundry "outline" :slant 'normal :weight 'normal :height 105 :width 'normal)
+ (set-fontset-font nil 'symbol (font-spec :family "Segoe UI Symbol" :size 11.0))
+ (add-hook 'text-mode-hook 'variable-pitch-mode)
+
 ; (set-face-attribute 'variable-pitch nil :font "iA Writer Quattro S-13")
 ; (set-face-attribute 'fixed-pitch nil :font "iA Writer Mono S-12")
 ; (set-face-attribute 'default nil :font "iA Writer Mono S-12")
@@ -46,7 +55,8 @@
 ;; 单独设置中文字体 Sp4					  
 (dolist (charset '(kana han cjk-misc bopomofo))
     (set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family "PingFang SC Regular" :size 26)))
+                      (font-spec :family "PingFang SC Regular" :size 28)))
+					  ;(font-spec :family "SimHei" :size 26)))
 
 
 
@@ -229,7 +239,7 @@
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message t)
 (setq inhibit-startup-message t)
-(setq initial-scratch-message "Let's start org-roam-server via:\n(launch-org-roam-server)\n\n")
+(setq initial-scratch-message "Let's start org-roam-server by:\n(launch-org-roam-server)\n\n")
 (setq initial-major-mode 'org-mode)
 (setq-default indent-tabs-mode nil)
 (setq pop-up-windows nil)
@@ -280,7 +290,7 @@
 ;; Automatically load the theme you like
 ;; I am using modus-operandi (light theme) here
 ;; There is also modus-vivendi (dark theme)
-(load-theme 'modus-operandi)
+(load-theme 'modus-vivendi)
 
 
 
