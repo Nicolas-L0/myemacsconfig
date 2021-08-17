@@ -8,8 +8,8 @@
  (rear-context-string . "6 14:00-16:00\n \n")
  (position . 237))
 ("org-capture-last-stored"
- (filename . "c:/Users/Nicolas.Lai/OneDrive/Documents/_00PersonalDocuments/OrgNote/notes/roam/20210601175438-课程记录.org")
- (front-context-string)
- (rear-context-string . " 11:00-12:00 1h\n")
- (position . 923))
+ (filename . "c:/Users/Nicolas.Lai/OneDrive/Documents/_00PersonalDocuments/OrgNote/notes/roam/daily/2021-08-17.org")
+ (front-context-string . "** 流浪地球修改意见 [202")
+ (rear-context-string . "ef06243\n  :END:\n")
+ (position . 215))
 )
