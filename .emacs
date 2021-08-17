@@ -89,133 +89,106 @@
 
 
 ;;==============================================================================================================
-;; Org and Org-roam 
+;; Org and Org-roam
 
-;;; Tell Emacs where sqlite3.exe and C compiler is stored
+;;; Tell Emacs where sqlite3.exe is stored
 (add-to-list 'exec-path "~/sqlite-tools-win32-x86-3350500")
-(add-to-list 'exec-path "C:/msys64/usr/bin")
 
-;; disable the warning of upgrate to v2
-(setq org-roam-v2-ack t)
+;;; Tell Emacs to start org-roam-mode when Emacs starts
+(add-hook 'after-init-hook 'org-roam-mode)
 
-;; the problem of "Selecting deleted buffer"
-;(setq inhibit-modification-hooks t)
-
-;; Tell Emacs to start org-roam-mode when Emacs starts
-(require 'org-roam)
-;(add-hook 'after-init-hook 'org-roam-mode)
-
-;; Some important variables
+;;; Some important variables
 (setq org-roam-directory (concat my/orgnote-directory "/roam/"))
 (setq org-roam-dailies-directory (concat my/orgnote-directory "/roam/daily/"))
-
-;;;;; Recommendation for Windows users for performance 
-;;(setq org-roam-db-update-method 'immediate) ;;; https://github.com/org-roam/org-roam/issues/1289#issuecomment-744046148
+;;; Recommendation for Windows users for performance 
+(setq org-roam-db-update-method 'immediate) ;;; https://github.com/org-roam/org-roam/issues/1289#issuecomment-744046148
  
-;;;;; Define key bindings for Org-roam
+;;; Define key bindings for Org-roam
 (global-set-key (kbd "C-c t") #'org-roam-dailies-capture-today)
 (global-set-key (kbd "C-c d") #'org-roam-dailies-capture-date)
 (global-set-key (kbd "C-c Y") #'org-roam-dailies-capture-yesterday)
 (global-set-key (kbd "C-c T") #'org-roam-dailies-capture-tomorrow)
-(global-set-key (kbd "C-c gt") #'org-roam-dailies-goto-today)
-(global-set-key (kbd "C-c gd" ) #'org-roam-dailies-goto-date)
-(global-set-key (kbd "C-c gY") #'org-roam-dailies-goto-yesterday)
-(global-set-key (kbd "C-c gT") #'org-roam-dailies-goto-tomorrow)
-(global-set-key (kbd "C-c ff") #'org-roam-node-find)
+(global-set-key (kbd "C-c ft") #'org-roam-dailies-find-today)
+(global-set-key (kbd "C-c fd" ) #'org-roam-dailies-find-date)
+(global-set-key (kbd "C-c fY") #'org-roam-dailies-find-yesterday)
+(global-set-key (kbd "C-c fT") #'org-roam-dailies-find-tomorrow)
+(global-set-key (kbd "C-c ff") #'org-roam-find-file)
 (global-set-key (kbd "C-c c") #'org-roam-capture)
-(global-set-key (kbd "C-c b") #'org-roam-buffer-toggle)
-(global-set-key (kbd "C-c ii" ) #'org-roam-node-insert)
-(global-set-key (kbd "C-c aa" ) #'org-roam-alias-add)
-(global-set-key (kbd "C-c at" ) #'org-roam-tag-add)
-(global-set-key (kbd "C-c ar" ) #'org-roam-ref-add)
-(global-set-key (kbd "C-c id" ) #'org-id-get-create)
-(global-set-key (kbd "C-c ic" ) #'org-id-copy)
-(global-set-key (kbd "C-c gi" ) #'org-id-goto)
-;;(global-set-key (kbd "C-c fb") #'org-roam-switch-to-buffer)
+;(global-set-key (kbd "C-c b") #'org-roam)
+(global-set-key (kbd "C-c b") #'org-roam-buffer-toggle-display)
+(global-set-key (kbd "C-c i" ) #'org-roam-insert)
+;(global-set-key (kbd "C-c i" ) #'org-roam-insert-immediate)
+(global-set-key (kbd "C-c fb") #'org-roam-switch-to-buffer)
 
 ;;; Template
-
-;;(setq	org-roam-capture-templates
-;;			'(
-;;				("d" "default" 
-;;				plain (function org-roam-capture--get-point)
-;;				"* %?"
-;;				:file-name "%<%Y%m%d%H%M%S>-${slug}" ;;slug：大转小写、去特殊字符等操作得到字符
-;;				:head "#+title: ${title}\n#+roam_alias:\n#+roam_tags:\n"
-;;				:unnarrowed t)
-;;			)
-;;)
-
-;(require 'org-roam)
-;(defvar org-end-time-was-given)
-(setq org-roam-capture-templates
-  '(("d" "default" plain "%?" 
-     :if-new (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org"
-                "#+title: ${title}\n\n\n"
-				("About"))
-     :unnarrowed t))
-)
-
 (setq	org-roam-dailies-capture-templates
 			'(
-				("j" "Journals" plain
-;				#'org-roam-capture--get-point
-				"** %? %U\n\n "
-				:if-new (file+head+olp "%<%Y-%m-%d>.org" 
-						"#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n\n"
-						("Journals"))
+				("j" "Journals" entry
+				#'org-roam-capture--get-point
+				"* %? %U\n\n "
+				:file-name "daily/%<%Y-%m-%d>"
+				:head "#+title: %<%Y-%m-%d>\n#+roam_tags: daily\n\n"
+				:olp ("Journals")
 				:unnarrowed t)
 				
-;				("i" "Ideas" entry
-;				#'org-roam-capture--get-point
-;				"* %? %U\n\n "
-;				:file-name "daily/%<%Y-%m-%d>"
-;				:head "#+title: %<%Y-%m-%d>\n#+roam_tags: daily\n\n" 
-;				:olp ("Ideas")
-;				:unnarrowed t)
-;				
-;				("t" "Todos" entry
-;				#'org-roam-capture--get-point
-;				"* TODO %? %U\n\tSCHEDULED: %T DEADLINE: %t"
-;				:file-name "daily/%<%Y-%m-%d>"
-;				:head "#+title: %<%Y-%m-%d>\n#+roam_tags: daily\n\n" 
-;				:olp ("Todos")
-;				:unnarrowed t)
-;			)
+				("i" "Ideas" entry
+				#'org-roam-capture--get-point
+				"* %? %U\n\n "
+				:file-name "daily/%<%Y-%m-%d>"
+				:head "#+title: %<%Y-%m-%d>\n#+roam_tags: daily\n\n" 
+				:olp ("Ideas")
+				:unnarrowed t)
+				
+				("t" "Todos" entry
+				#'org-roam-capture--get-point
+				"* TODO %? %U\n\tSCHEDULED: %T DEADLINE: %t"
+				:file-name "daily/%<%Y-%m-%d>"
+				:head "#+title: %<%Y-%m-%d>\n#+roam_tags: daily\n\n" 
+				:olp ("Todos")
+				:unnarrowed t)
+			)
 )
+(setq	org-roam-capture-templates
+			'(
+				("d" "default" 
+				plain (function org-roam-capture--get-point)
+				"* %?"
+				:file-name "%<%Y%m%d%H%M%S>-${slug}" ;;slug：大转小写、去特殊字符等操作得到字符
+				:head "#+title: ${title}\n#+roam_alias:\n#+roam_tags:\n"
+				:unnarrowed t)
+			)
 )
 
-;;
-;;
-;;
-;;; Start org-roam-server
-;;(defun launch-org-roam-server()
-;;	"This function execute server-start and org-roam-server-mode, and then launch edge.exe to open http://127.0.0.1:8080/"
-;;	(progn (server-start) (org-roam-server-mode)(insert " [[http://127.0.0.1:8080/][launch web]]")))
-;;	;(w32-shell-execute "open" "c:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" "http://127.0.0.1:8080/"))
+
+
+; Start org-roam-server
+(defun launch-org-roam-server()
+	"This function execute server-start and org-roam-server-mode, and then launch edge.exe to open http://127.0.0.1:8080/"
+	(progn (server-start) (org-roam-server-mode)(insert " [[http://127.0.0.1:8080/][launch web]]")))
+	;(w32-shell-execute "open" "c:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe" "http://127.0.0.1:8080/"))
 
 
 
 ;;==============================================================================================================
 ;; org-protocol, org-roam-graph, & org-roam-server
 
-;(setq org-roam-graph-executable "C:/Program Files/Graphviz/bin/dot.exe")
-;(setq org-roam-graph-viewer "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe")
-;
-;(require 'org-protocol)
-;(require 'org-roam-protocol)
-;
-;(require 'org-roam-server)
-;(setq org-roam-server-host "127.0.0.1"
-;       org-roam-server-port 8080
-;       org-roam-server-export-inline-images t
-;       org-roam-server-authenticate nil
-;       org-roam-server-network-poll t
-;       org-roam-server-network-arrows nil
-;       org-roam-server-network-label-truncate t
-;       org-roam-server-network-label-truncate-length 60
-;       org-roam-server-network-label-wrap-length 20)
-;
+(setq org-roam-graph-executable "C:/Program Files/Graphviz/bin/dot.exe")
+(setq org-roam-graph-viewer "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe")
+
+(require 'org-protocol)
+(require 'org-roam-protocol)
+
+(require 'org-roam-server)
+(setq org-roam-server-host "127.0.0.1"
+       org-roam-server-port 8080
+       org-roam-server-export-inline-images t
+       org-roam-server-authenticate nil
+       org-roam-server-network-poll t
+       org-roam-server-network-arrows nil
+       org-roam-server-network-label-truncate t
+       org-roam-server-network-label-truncate-length 60
+       org-roam-server-network-label-wrap-length 20)
+
 ;;==============================================================================================================
 ;; Ivy,Counsel, & Swiper
 ;; Enable Ivy mode in general
