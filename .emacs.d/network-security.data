@@ -1,0 +1,7 @@
+(
+ (:id "sha1:ff64f82078ae4cd7abafb258917f055383a6f715" :fingerprints ("sha1:3f:a8:02:16:25:aa:5b:99:a1:50:62:9c:38:af:04:36:66:d5:50:90") :host "www.baidu.com:443" :conditions (:renegotiation-info-ext))
+ (:id "sha1:d37084e7bd3d9811f05889ec48d6d494980e3994" :fingerprints ("sha1:67:ae:e9:39:d1:f9:9c:20:8b:18:78:10:9c:40:13:75:78:15:42:e4") :host "www.orgroam.com:443" :conditions (:expired :invalid :verify-cert))
+ (:id "sha1:6d4eb958390599243ba9f5035cb671fa8dd6a93a" :fingerprints ("sha1:56:41:11:79:62:b9:85:66:f8:9e:e4:3b:39:2d:5f:a6:a5:c7:e9:2d") :host "elpa.gnu.org:443" :conditions (:expired :invalid :verify-cert))
+ (:id "sha1:24c7a1e6369fef1e50de1deb1a9e5bbc68f80c8b" :fingerprints ("sha1:cf:5a:90:ac:6f:03:dd:c2:55:9b:d7:bf:0e:f1:bc:73:4b:99:60:ce") :host "orgmode.org:443" :conditions (:expired :invalid :verify-cert))
+ (:id "sha1:85b31c268009209a8d3c5387033b219264f7e62b" :fingerprints ("sha1:de:74:ee:90:bf:b8:e5:20:54:66:5b:bc:6f:6b:d5:75:a8:f7:db:cb") :host "melpa.org:443" :conditions (:expired :invalid :verify-cert))
+)
