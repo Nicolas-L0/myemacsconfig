@@ -1,0 +1,26 @@
+* Intro
+This repo is the backup of my emacs config. (.el files)
+
+** Main useage
+- Daily bullet journal tool :: with org-mode
+- Weekly/Monthly/Annually review & reflect :: with org-mode, org-agenda, org-tags
+- Personal "second brain" :: with org-mode, org-roam, org-roam-ui
+- Edit .el files :: with company, flymake for program mode.
+  
+** Requirments
+Here is the enviroment when I use these configs:
+- Windows 11 Home Insider Preview 25236.1010
+- Emacs 28.2 with buildin packages (like org and so on)
+- MSYS2 C Compiler for Windows, which org-roam need. (learn more at [[https://www.orgroam.com/manual.html#C-Compiler-for-Windows][orgroam manual]])
+
+** How to use
+I haven't figure out why it dosen't work with =init.el= file directly, it seems I have to install the =use-package= package first. So here is a feasible but not optimal way to make configs work:
+1. Put all of these in the emacs home src like =~/.emacs.d=.
+2. Rename the =reinstall package.el= to =init.el=, with rename the original init file as =init_backup.el=.
+3. Run emacs and close it after welcome message comes out without error reports.
+4. Delete =init.el= (which is =reinstall package.el=), and rename =init_backup.el= back to =init.el=.
+5. Run emacs and make a cup of coffee :)
+
+* Special Thanks
+[[https://space.bilibili.com/210738994][@第253页图灵笔记 (BiliBili)]]
+Thanks for your detailed [[https://www.bilibili.com/video/BV13g4y167Zn][video]] tutorial about how to make the emacs config files more systematical!
