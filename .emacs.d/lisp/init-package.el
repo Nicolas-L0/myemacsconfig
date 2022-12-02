@@ -174,7 +174,7 @@
 	   :empty-lines-after 2
 	   :unnarrowed t)
 	  ("p" "daily preview" plain
-           "# %<%Y年%m月%d日 %A (第%W/52周 第%j天)>\n# 来自昨天的私语\n%? \n# 今日计划\n"
+           "# %<%Y年%m月%d日 %A (第%W/52周 第%j天)>\n# 来自昨天的私语\n%? \n# 今日计划\n| item | plan time | actual use | done? |\n|------+-----------+------------+-------|\n|      |           |            |       |\n# 今日回顾\n"
            :target (file+head+olp "DAILY.org" ""
 				  ("Dailies" "%<%Y-%m-%d %a>"))
 ;;				   "%(get-tomorrow-date)"))
@@ -182,13 +182,13 @@
 	   :unnarrowed t)
 	  ("w" "weekly template")
 	  ("wr" "weekly review" plain
-           "# 本周回顾\n%?"
+           "* 本周回顾\n%?"
            :target (file+head+olp "DAILY.org" ""
 				  ("Weeks" "%<%Y-W%W>"))
 	   :empty-lines-after 2
 	   :unnarrowed t)
 	  ("wp" "weekly preview" plain
-           "# 来自上周的反思\n%?\n# 本周目标\n# 本周计划"
+           "*** 来自上周的反思\n%?\n*** 本周目标\n*** 本周计划"
            :target (file+head+olp "DAILY.org" ""
 				  ("Weeks" "%<%Y-W%W>"))
 	   :empty-lines-after 2
